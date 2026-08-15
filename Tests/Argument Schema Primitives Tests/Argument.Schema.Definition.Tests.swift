@@ -19,7 +19,8 @@ extension Argument.Schema.Definition<Root> {
     @Suite("Argument.Schema.Definition")
     struct Test {
         @Suite struct Unit {
-            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error) {
+            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error)
+            {
                 let nodes: [any Argument.Schema.Node] = [
                     Argument.Positional<String>(name: "phrase", placeholder: "phrase"),
                     Argument.Option<Int>(name: .long(try .init("count")), placeholder: "count"),
@@ -38,7 +39,9 @@ extension Argument.Schema.Definition<Root> {
                 #expect(recording.events.isEmpty)
             }
 
-            @Test func `schema with all node kinds visits each kind`() throws(Argument.Name.Long.Error) {
+            @Test func `schema with all node kinds visits each kind`() throws(Argument.Name.Long
+                .Error)
+            {
                 let nodes: [any Argument.Schema.Node] = [
                     Argument.Positional<String>(name: "p", placeholder: "p"),
                     Argument.Option<Int>(name: .long(try .init("o")), placeholder: "o"),
