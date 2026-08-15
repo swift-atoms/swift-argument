@@ -34,7 +34,9 @@ extension Argument.Flag {
                 #expect(flag.arity == .atMost(1))
             }
 
-            @Test func `count arity supports verbosity-style flag`() throws(Argument.Name.Short.Error) {
+            @Test func `count arity supports verbosity-style flag`() throws(Argument.Name.Short
+                .Error)
+            {
                 let flag = Argument.Flag(
                     name: .short(try .init("v")),
                     arity: .count

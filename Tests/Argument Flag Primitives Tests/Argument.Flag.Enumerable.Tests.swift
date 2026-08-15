@@ -83,7 +83,10 @@ extension Operation {
         @Suite struct `Edge Case` {}
 
         @Suite struct Integration {
-            @Test func `Argument.Flag.Enumerable conformer is usable wherever Finite.Enumerable is expected`() {
+            @Test
+            func
+                `Argument.Flag.Enumerable conformer is usable wherever Finite.Enumerable is expected`()
+            {
                 // This generic function accepts ANY Finite.Enumerable — including
                 // types unrelated to argument parsing. The fact that Operation
                 // type-checks here is the structural-refinement guarantee.

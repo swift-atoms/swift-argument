@@ -50,7 +50,9 @@ extension Argument.Option<Int> {
                 #expect(option.environment == nil)
             }
 
-            @Test func `environment variable carries name when supplied`() throws(Argument.Name.Long.Error) {
+            @Test func `environment variable carries name when supplied`() throws(Argument.Name.Long
+                .Error)
+            {
                 let varName: Argument.Environment.Variable.Name = "MYAPP_COUNT"
                 let option = Argument.Option<Int>(
                     name: .long(try .init("count")),
