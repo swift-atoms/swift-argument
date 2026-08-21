@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-argument-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-argument-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Finite_Primitives
 import Testing
 
@@ -87,16 +76,13 @@ extension Operation {
             func
                 `Argument.Flag.Enumerable conformer is usable wherever Finite.Enumerable is expected`()
             {
-                // This generic function accepts ANY Finite.Enumerable — including
-                // types unrelated to argument parsing. The fact that Operation
-                // type-checks here is the structural-refinement guarantee.
+
                 func total<E: Finite.Enumerable>(_: E.Type) -> Cardinal {
                     E.allCases.reduce(Cardinal.zero) { partial, value in
                         partial + Ordinal.zero.distance.unchecked(to: value.ordinal)
                     }
                 }
 
-                // For Operation: 0 + 1 == 1
                 #expect(total(Operation.self) == Cardinal.one)
             }
         }

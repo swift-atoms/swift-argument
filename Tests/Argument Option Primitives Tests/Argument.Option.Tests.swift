@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-argument-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-argument-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 
 @testable import Argument_Primitives_Test_Support
@@ -19,8 +8,7 @@ extension Argument.Option<Int> {
         @Suite struct Unit {
             @Test func `initializer carries explicit fields`() {
                 let option = Argument.Option<Int>(
-                    // Provably-valid literals ("c", "count") — test fixture.
-                    // swiftlint:disable:next force_try
+
                     name: .both(short: try! .init("c"), long: try! .init("count")),
                     placeholder: "count",
                     arity: .exactly(1),

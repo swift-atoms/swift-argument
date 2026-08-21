@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-argument-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-argument-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Diagnostic_Primitives
 import Testing
 
@@ -21,8 +10,7 @@ extension Argument.Error {
             @Test func `position accessor returns the case's position payload`() {
                 let position = Argument.Position(argvIndex: 1, byteOffset: 0)
                 let error = Argument.Error.unknownOption(name: "--foo", position: position)
-                // swift-linter:disable:next raw value access
-                // REASON: `.position` is the case-payload accessor on Argument.Error, not a brand-newtype rawValue. [PATTERN-017] recognizer collides on the field-name shape; same-package use is the rule's documented legitimate case.
+
                 #expect(error.position == position)
             }
 

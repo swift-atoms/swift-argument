@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-argument-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-argument-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 import Text_Primitives
 

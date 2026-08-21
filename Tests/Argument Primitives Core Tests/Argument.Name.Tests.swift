@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-argument-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-argument-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Testing
 
 @testable import Argument_Primitives_Test_Support
@@ -32,10 +21,9 @@ extension Argument.Name {
 
             @Test func `both case exposes short and long`() {
                 let name = Argument.Name.both(
-                    // Provably-valid literals ("v", "verbose") — test fixture.
-                    // swiftlint:disable:next force_try
+
                     short: try! .init("v"),
-                    // swiftlint:disable:next force_try
+
                     long: try! .init("verbose")
                 )
                 #expect(name.short?.character == "v")
@@ -58,7 +46,7 @@ extension Argument.Name {
             }
 
             @Test func `canonical dotted-name forms compose at production sites`() {
-                // Production-site shape: declarative, no `try`, no `_unchecked`.
+
                 let names: [Argument.Name] = [
                     .long(.literal("verbose")),
                     .short(.literal("v")),

@@ -12,13 +12,12 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // MARK: - Namespace
+
         .library(
             name: "Argument Primitive",
             targets: ["Argument Primitive"]
         ),
 
-        // MARK: - Sub-namespaces
         .library(
             name: "Argument Position Primitives",
             targets: ["Argument Position Primitives"]
@@ -36,7 +35,6 @@ let package = Package(
             targets: ["Argument Token Primitives"]
         ),
 
-        // MARK: - Combinator Variants
         .library(
             name: "Argument Positional Primitives",
             targets: ["Argument Positional Primitives"]
@@ -62,13 +60,11 @@ let package = Package(
             targets: ["Argument Schema Primitives"]
         ),
 
-        // MARK: - Umbrella
         .library(
             name: "Argument Primitives",
             targets: ["Argument Primitives"]
         ),
 
-        // MARK: - Test Support
         .library(
             name: "Argument Primitives Test Support",
             targets: ["Argument Primitives Test Support"]
@@ -105,13 +101,12 @@ let package = Package(
         ),
     ],
     targets: [
-        // MARK: - Namespace
+
         .target(
             name: "Argument Primitive",
             dependencies: []
         ),
 
-        // MARK: - Sub-namespaces (external-dep-bearing decls relocated from Core)
         .target(
             name: "Argument Position Primitives",
             dependencies: [
@@ -143,7 +138,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Combinator Variants
         .target(
             name: "Argument Positional Primitives",
             dependencies: [
@@ -182,7 +176,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Schema (composes all combinators)
         .target(
             name: "Argument Schema Primitives",
             dependencies: [
@@ -196,7 +189,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
         .target(
             name: "Argument Primitives",
             dependencies: [
@@ -214,7 +206,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Test Support
         .target(
             name: "Argument Primitives Test Support",
             dependencies: [
@@ -228,7 +219,6 @@ let package = Package(
             path: "Tests/Support"
         ),
 
-        // MARK: - Tests
         .testTarget(
             name: "Argument Primitives Core Tests",
             dependencies: ["Argument Primitives Test Support"]
