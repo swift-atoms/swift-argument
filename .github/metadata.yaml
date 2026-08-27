@@ -1,9 +1,9 @@
 # .github/metadata.yaml
-# L1 primitives package: argv-domain vocabulary atoms feeding the L2/L3
+# L2 molecule package: argv-domain vocabulary atoms feeding the L3/L4
 # argument-parsing stack (swift-ieee-1003, swift-arguments).
-description: "CLI argument-parsing vocabulary atoms — names, arity, visibility, tokens, schema nodes — for the institute L2/L3 argument-parser stack."
+description: "CLI argument-parsing vocabulary atoms — names, arity, visibility, tokens, schema nodes — for the institute L3/L4 argument-parser stack."
 topics:
-  - primitives
+  - molecules
   - argument
   - cli
   - argv

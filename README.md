@@ -1,18 +1,18 @@
-# Argument Primitives
+# Argument
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
-CLI argument-parsing vocabulary — `Argument.Name`, `Argument.Arity`, `Argument.Token`, `Argument.Schema.Node`, `Argument.Schema.Visitor`, and the schema-as-data combinators (`Positional`, `Option`, `Flag`, `Group`, `Subcommand`) — for the L2 / L3 argument-parser stack.
+CLI argument-parsing vocabulary — `Argument.Name`, `Argument.Arity`, `Argument.Token`, `Argument.Schema.Node`, `Argument.Schema.Visitor`, and the schema-as-data combinators (`Positional`, `Option`, `Flag`, `Group`, `Subcommand`) — for the L3 / L4 argument-parser stack.
 
 ---
 
 ## Key Features
 
-- **Vocabulary, not parsing** — owns the typed vocabulary that argv tokenization (L2, `swift-ieee-1003`) and argv-to-command parsing (L3, `swift-arguments`) compose. No tokenizer, no parser, no `Codable`-equivalent at this layer. The L1 boundary is the type catalog; logic lives at L2 and L3.
+- **Vocabulary, not parsing** — owns the typed vocabulary that argv tokenization (L3, `swift-ieee-1003`) and argv-to-command parsing (L4, `swift-arguments`) compose. No tokenizer, no parser, no `Codable`-equivalent at this layer. The L2 boundary is the type catalog; logic lives at L3 and L4.
 - **Validated names** — `Argument.Name.Short` checks POSIX 12.2 Guideline 3 (single ASCII alphanumeric); `Argument.Name.Long` checks GNU long-options `[a-zA-Z][a-zA-Z0-9-]*`. Both throw typed errors at construction; `__unchecked:` initializers bypass when callers can prove validity.
 - **Schema as data** — `Argument.Schema.Definition<Root>` carries `[any Argument.Schema.Node]`. Visitors implementing `Argument.Schema.Visitor` walk a definition once and emit help text, completion scripts, manpages, or a parse configuration — same data, every direction.
 - **Generic over the parsed-value type** — `Argument.Positional<V>`, `Argument.Option<V>` carry the typed value through the visitor; the schema visitor sees the same `V` the parser sees, so help-text emission and parsing share one source of truth (no second metadata channel).
-- **`Diagnostic.Severity` for errors** — `Argument.Error` cases carry an `Argument.Position` (argv index + byte offset) and an instance-level `severity` accessor returning `Diagnostic.Severity`. L3 consumers route into the institute diagnostic stack without re-wrapping.
+- **`Diagnostic.Severity` for errors** — `Argument.Error` cases carry an `Argument.Position` (argv index + byte offset) and an instance-level `severity` accessor returning `Diagnostic.Severity`. L4 consumers route into the institute diagnostic stack without re-wrapping.
 - **Tagged identifier for env-var fallback** — `Argument.Environment.Variable.Name` is `Tagged<Argument.Environment.Variable, String>`. The institute typed-identifier framework distinguishes env-var names from arbitrary strings at type-check time; the Tagged SLI gives string-literal ergonomics for free.
 - **Foundation-free** — no `import Foundation` anywhere. The package compiles on Embedded targets and on platforms without a Foundation port.
 
@@ -23,9 +23,9 @@ CLI argument-parsing vocabulary — `Argument.Name`, `Argument.Arity`, `Argument
 ### Declaring an argument schema
 
 ```swift
-import Argument_Primitives
+import Argument
 
-enum Repeat {}   // Root type — fields populated by the parser at L3
+enum Repeat {}   // Root type — fields populated by the parser at L4
 
 let nodes: [any Argument.Schema.Node] = [
     Argument.Positional<String>(
@@ -48,12 +48,12 @@ let nodes: [any Argument.Schema.Node] = [
 let schema = Argument.Schema.Definition<Repeat>(nodes: nodes)
 ```
 
-This is data. No parsing happens. The L3 layer composes it into a `Parser.Protocol` over argv; visitors emit help text and other artifacts.
+This is data. No parsing happens. The L4 layer composes it into a `Parser.Protocol` over argv; visitors emit help text and other artifacts.
 
 ### Walking a schema with a visitor
 
 ```swift
-import Argument_Primitives
+import Argument
 
 // A visitor that emits one line per node, naming its kind.
 struct Summary: Argument.Schema.Visitor {
@@ -86,7 +86,7 @@ A help-text emitter, a bash-completion emitter, and a manpage emitter are each a
 ### Validated short and long names
 
 ```swift
-import Argument_Primitives
+import Argument
 
 let v = try Argument.Name.Short("v")           // OK — single ASCII alphanumeric
 let verbose = try Argument.Name.Long("verbose") // OK
@@ -108,7 +108,7 @@ do {
 ### Environment-variable identifier
 
 ```swift
-import Argument_Primitives
+import Argument
 
 // Tagged SLI gives string-literal ergonomics.
 let verbosity: Argument.Environment.Variable.Name = "MYAPP_VERBOSITY"
@@ -121,7 +121,7 @@ let option = Argument.Option<Int>(
 )
 ```
 
-L3 (`swift-environment`) resolves the env-var fallback at parse time; L1 only declares the typed name.
+L4 (`swift-environment`) resolves the env-var fallback at parse time; L2 only declares the typed name.
 
 ---
 
@@ -129,13 +129,13 @@ L3 (`swift-environment`) resolves the env-var fallback at parse time; L1 only de
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-argument-primitives.git", branch: "main"),
+    .package(url: "https://github.com/swift-molecules/swift-argument.git", branch: "main"),
 ],
 targets: [
     .target(
         name: "MyTarget",
         dependencies: [
-            .product(name: "Argument Primitives", package: "swift-argument-primitives"),
+            .product(name: "Argument", package: "swift-argument"),
         ]
     ),
 ],
@@ -144,7 +144,7 @@ targets: [
 For consumers needing only one variant (say, just the `Argument.Schema` machinery), depend on the specific product instead of the umbrella:
 
 ```swift
-.product(name: "Argument Schema Primitives", package: "swift-argument-primitives"),
+.product(name: "Argument Schema", package: "swift-argument"),
 ```
 
 ---
@@ -154,15 +154,15 @@ For consumers needing only one variant (say, just the `Argument.Schema` machiner
 | Product | Contents | Import when... |
 |---|---|---|
 | `Argument Namespace` | `public enum Argument {}` only | Adding sub-namespaces or typealiases without depending on Core's catalog |
-| `Argument Primitives Core` | `Name`, `Arity`, `Visibility`, `Help`, `Token`, `Error`, `Position`, `Environment.Variable.Name` | Implementing tokenizers or low-level consumers |
-| `Argument Positional Primitives` | `Argument.Positional<V>` | Building a schema by hand |
-| `Argument Option Primitives` | `Argument.Option<V>` | Building a schema by hand |
-| `Argument Flag Primitives` | `Argument.Flag` | Building a schema by hand |
-| `Argument Group Primitives` | `Argument.Group<G>` | Building a schema by hand |
-| `Argument Subcommand Primitives` | `Argument.Subcommand<S>`, `Argument.Subcommand.Choice` | Composing subcommand trees |
-| `Argument Schema Primitives` | `Argument.Schema.Definition<Root>`, `Argument.Schema.Node`, `Argument.Schema.Visitor` | Writing a visitor (help, completion, manpage) |
-| `Argument Primitives` | Umbrella — re-exports everything above | General consumers; L3 schema authors |
-| `Argument Primitives Test Support` | `Argument.Schema.Recording` plus Tagged SLI re-export | Test targets verifying schema traversal |
+| `Argument Core` | `Name`, `Arity`, `Visibility`, `Help`, `Token`, `Error`, `Position`, `Environment.Variable.Name` | Implementing tokenizers or low-level consumers |
+| `Argument Positional` | `Argument.Positional<V>` | Building a schema by hand |
+| `Argument Option` | `Argument.Option<V>` | Building a schema by hand |
+| `Argument Flag` | `Argument.Flag` | Building a schema by hand |
+| `Argument Group` | `Argument.Group<G>` | Building a schema by hand |
+| `Argument Subcommand` | `Argument.Subcommand<S>`, `Argument.Subcommand.Choice` | Composing subcommand trees |
+| `Argument Schema` | `Argument.Schema.Definition<Root>`, `Argument.Schema.Node`, `Argument.Schema.Visitor` | Writing a visitor (help, completion, manpage) |
+| `Argument` | Umbrella — re-exports everything above | General consumers; L4 schema authors |
+| `Argument Test Support` | `Argument.Schema.Recording` plus Tagged SLI re-export | Test targets verifying schema traversal |
 
 ---
 
@@ -197,14 +197,14 @@ Argument
 
 Each combinator type (`Positional<V>`, `Option<V>`, …) conforms to `Argument.Schema.Node`, supplying its own `accept(_:)` that dispatches the visitor to its kind-specific `visit(...)` method. The visitor recovers the static value type `V` at the visit site through double-dispatch.
 
-Tokenization (POSIX 12.2, GNU long-options) is owned by the L2 package `swift-ieee-1003`. Parsing argv to a `Root`, schema-builder DSL, help-text emission, env-var resolution, and exit-code dispatch are owned by the L3 package `swift-arguments`.
+Tokenization (POSIX 12.2, GNU long-options) is owned by the L3 package `swift-ieee-1003`. Parsing argv to a `Root`, schema-builder DSL, help-text emission, env-var resolution, and exit-code dispatch are owned by the L4 package `swift-arguments`.
 
 ---
 
 ## Platform Support
 
-[![Swift Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswift-primitives%2Fswift-argument-primitives%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/swift-primitives/swift-argument-primitives)
-[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswift-primitives%2Fswift-argument-primitives%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/swift-primitives/swift-argument-primitives)
+[![Swift Versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswift-molecules%2Fswift-argument%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/swift-molecules/swift-argument)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswift-molecules%2Fswift-argument%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/swift-molecules/swift-argument)
 
 Compiles on every platform with a Swift 6.3+ toolchain. No Foundation dependency, no platform-specific code.
 
@@ -212,7 +212,7 @@ Compiles on every platform with a Swift 6.3+ toolchain. No Foundation dependency
 
 ## Error Handling
 
-`Argument.Error` is the parse-time error domain. Cases carry an `Argument.Position` (argv index + byte offset) and an instance `.severity` accessor returning `Diagnostic.Severity` (`.error` by default; L3 layers may demote per case).
+`Argument.Error` is the parse-time error domain. Cases carry an `Argument.Position` (argv index + byte offset) and an instance `.severity` accessor returning `Diagnostic.Severity` (`.error` by default; L4 layers may demote per case).
 
 ```swift
 let position = Argument.Position(argvIndex: 1, byteOffset: 0)
@@ -234,12 +234,12 @@ Construction errors (`Argument.Name.Short.Error`, `Argument.Name.Long.Error`) ar
 
 ## Related Packages
 
-- [`swift-tagged-primitives`](https://github.com/swift-primitives/swift-tagged-primitives) — phantom-typed `Tagged<Tag, Underlying>`, used here for `Argument.Environment.Variable.Name`.
-- [`swift-text-primitives`](https://github.com/swift-primitives/swift-text-primitives) — `Text.Range`, used inside `Argument.Token` for source byte-range provenance.
-- [`swift-diagnostic-primitives`](https://github.com/swift-primitives/swift-diagnostic-primitives) — `Diagnostic.Severity`, used by `Argument.Error.severity`.
-- [`swift-parser-primitives`](https://github.com/swift-primitives/swift-parser-primitives) — `Parser.Protocol` substrate. L1 combinator targets depend on it so future schema-bound parsers can be expressed.
-- `swift-ieee-1003` (L2 standards, planned) — POSIX 12.2 utility-syntax tokenization.
-- `swift-arguments` (L3 foundations, planned) — schema-bound argv parser, help-text emitter, subcommand dispatch.
+- [`swift-tagged`](https://github.com/swift-molecules/swift-tagged) — phantom-typed `Tagged<Tag, Underlying>`, used here for `Argument.Environment.Variable.Name`.
+- [`swift-text`](https://github.com/swift-molecules/swift-text) — `Text.Range`, used inside `Argument.Token` for source byte-range provenance.
+- [`swift-diagnostic`](https://github.com/swift-molecules/swift-diagnostic) — `Diagnostic.Severity`, used by `Argument.Error.severity`.
+- [`swift-parser`](https://github.com/swift-molecules/swift-parser) — `Parser.Protocol` substrate. L2 combinator targets depend on it so future schema-bound parsers can be expressed.
+- `swift-ieee-1003` (L3 standards, planned) — POSIX 12.2 utility-syntax tokenization.
+- `swift-arguments` (L4 compositions, planned) — schema-bound argv parser, help-text emitter, subcommand dispatch.
 
 ---
 
