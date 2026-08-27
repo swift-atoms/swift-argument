@@ -1,3 +1,5 @@
+import Argument
+
 extension Argument.Schema {
 
     public struct Recording: Sendable {
