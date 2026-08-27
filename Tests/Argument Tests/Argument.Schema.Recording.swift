@@ -1,4 +1,4 @@
-import Argument
+public import Argument
 
 extension Argument.Schema {
 

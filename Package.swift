@@ -25,11 +25,18 @@ let package = Package(
             targets: ["Argument Apple Foundation Integration"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/swift-atoms/swift-tagged.git",
+            branch: "main"
+        )
+    ],
     targets: [
         .target(
             name: "Argument",
-            dependencies: []
+            dependencies: [
+                .product(name: "Tagged", package: "swift-tagged")
+            ]
         ),
         .target(
             name: "Argument Standard Library Integration",
@@ -44,7 +51,14 @@ let package = Package(
         ),
         .testTarget(
             name: "Argument Tests",
-            dependencies: ["Argument"],
+            dependencies: [
+                "Argument",
+                .product(name: "Tagged", package: "swift-tagged"),
+                .product(
+                    name: "Tagged Standard Library Integration",
+                    package: "swift-tagged"
+                ),
+            ],
             path: "Tests/Argument Tests"
         ),
     ],
