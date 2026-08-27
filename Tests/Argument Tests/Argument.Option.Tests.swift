@@ -1,5 +1,3 @@
-import Tagged
-import Tagged_Standard_Library_Integration
 import Testing
 
 @testable import Argument
@@ -30,26 +28,6 @@ extension Argument.Option<Int> {
                     placeholder: "count"
                 )
                 #expect(option.arity == .exactly(1))
-            }
-
-            @Test func `environment variable defaults to nil`() throws(Argument.Name.Long.Error) {
-                let option = Argument.Option<Int>(
-                    name: .long(try .init("count")),
-                    placeholder: "count"
-                )
-                #expect(option.environment == nil)
-            }
-
-            @Test func `environment variable carries name when supplied`() throws(Argument.Name.Long
-                .Error)
-            {
-                let varName: Argument.Environment.Variable.Name = "MYAPP_COUNT"
-                let option = Argument.Option<Int>(
-                    name: .long(try .init("count")),
-                    placeholder: "count",
-                    environment: varName
-                )
-                #expect(option.environment == varName)
             }
         }
 

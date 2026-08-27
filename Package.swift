@@ -17,47 +17,33 @@ let package = Package(
             targets: ["Argument"]
         ),
         .library(
-            name: "Argument Standard Library Integration",
-            targets: ["Argument Standard Library Integration"]
-        ),
-        .library(
             name: "Argument Apple Foundation Integration",
             targets: ["Argument Apple Foundation Integration"]
         ),
+        .library(
+            name: "Argument Test Support",
+            targets: ["Argument Test Support"]
+        ),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-atoms/swift-tagged.git",
-            branch: "main"
-        )
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "Argument",
-            dependencies: [
-                .product(name: "Tagged", package: "swift-tagged")
-            ]
-        ),
-        .target(
-            name: "Argument Standard Library Integration",
-            dependencies: ["Argument"]
+            dependencies: []
         ),
         .target(
             name: "Argument Apple Foundation Integration",
-            dependencies: [
-                "Argument",
-                "Argument Standard Library Integration",
-            ]
+            dependencies: ["Argument"]
+        ),
+        .target(
+            name: "Argument Test Support",
+            dependencies: ["Argument"]
         ),
         .testTarget(
             name: "Argument Tests",
             dependencies: [
                 "Argument",
-                .product(name: "Tagged", package: "swift-tagged"),
-                .product(
-                    name: "Tagged Standard Library Integration",
-                    package: "swift-tagged"
-                ),
+                "Argument Test Support",
             ],
             path: "Tests/Argument Tests"
         ),
