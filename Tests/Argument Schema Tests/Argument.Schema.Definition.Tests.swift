@@ -1,7 +1,6 @@
-import Argument_Test_Support
 import Testing
 
-@testable import Argument
+@testable import Argument_Test_Support
 
 private struct Root: Sendable {}
 

@@ -1,0 +1,36 @@
+import Testing
+import Text
+
+@testable import Argument_Test_Support
+
+extension Argument.Token {
+    @Suite("Argument.Token")
+    struct Test {
+        @Suite struct Unit {
+            @Test func `initializer carries kind and range`() {
+                let start: Text.Position = 0
+                let end: Text.Position = 6
+                let range = Text.Range(start: start, end: end)
+                let token = Argument.Token(kind: .long("verbose"), range: range)
+                #expect(token.kind == .long("verbose"))
+                #expect(token.range == range)
+            }
+
+            @Test func `kind cases distinct`() {
+                let long: Argument.Token.Kind = .long("foo")
+                let short: Argument.Token.Kind = .shortCluster("xyz")
+                let value: Argument.Token.Kind = .value("v")
+                let separator: Argument.Token.Kind = .separator
+                let positional: Argument.Token.Kind = .positional("path")
+                let eoo: Argument.Token.Kind = .endOfOptions
+                #expect(long != short)
+                #expect(value != positional)
+                #expect(separator != eoo)
+            }
+        }
+
+        @Suite struct `Edge Case` {}
+
+        @Suite struct Integration {}
+    }
+}
