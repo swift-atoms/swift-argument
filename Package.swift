@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-argument-primitives",
+    name: "swift-argument",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -12,240 +12,133 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
         .library(
-            name: "Argument Primitive",
-            targets: ["Argument Primitive"]
-        ),
-
-        .library(
-            name: "Argument Position Primitives",
-            targets: ["Argument Position Primitives"]
+            name: "Argument",
+            targets: ["Argument"]
         ),
         .library(
-            name: "Argument Error Primitives",
-            targets: ["Argument Error Primitives"]
+            name: "Argument Positional",
+            targets: ["Argument Positional"]
         ),
         .library(
-            name: "Argument Environment Primitives",
-            targets: ["Argument Environment Primitives"]
+            name: "Argument Option",
+            targets: ["Argument Option"]
         ),
         .library(
-            name: "Argument Token Primitives",
-            targets: ["Argument Token Primitives"]
-        ),
-
-        .library(
-            name: "Argument Positional Primitives",
-            targets: ["Argument Positional Primitives"]
+            name: "Argument Flag",
+            targets: ["Argument Flag"]
         ),
         .library(
-            name: "Argument Option Primitives",
-            targets: ["Argument Option Primitives"]
+            name: "Argument Group",
+            targets: ["Argument Group"]
         ),
         .library(
-            name: "Argument Flag Primitives",
-            targets: ["Argument Flag Primitives"]
+            name: "Argument Subcommand",
+            targets: ["Argument Subcommand"]
         ),
         .library(
-            name: "Argument Group Primitives",
-            targets: ["Argument Group Primitives"]
+            name: "Argument Schema",
+            targets: ["Argument Schema"]
         ),
         .library(
-            name: "Argument Subcommand Primitives",
-            targets: ["Argument Subcommand Primitives"]
-        ),
-        .library(
-            name: "Argument Schema Primitives",
-            targets: ["Argument Schema Primitives"]
-        ),
-
-        .library(
-            name: "Argument Primitives",
-            targets: ["Argument Primitives"]
-        ),
-
-        .library(
-            name: "Argument Primitives Test Support",
-            targets: ["Argument Primitives Test Support"]
-        ),
-    ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-text-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-diagnostic-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-parser-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-index-primitives.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-primitives/swift-byte-primitives.git",
-            branch: "main"
+            name: "Argument Schema Test Support",
+            targets: ["Argument Schema Test Support"]
         ),
     ],
     targets: [
-
         .target(
-            name: "Argument Primitive",
-            dependencies: []
+            name: "Argument"
         ),
-
         .target(
-            name: "Argument Position Primitives",
+            name: "Argument Positional",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Index Primitives", package: "swift-index-primitives"),
-                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
-            name: "Argument Error Primitives",
+            name: "Argument Option",
             dependencies: [
-                "Argument Primitive",
-                "Argument Position Primitives",
-                .product(name: "Diagnostic Primitives", package: "swift-diagnostic-primitives"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
-            name: "Argument Environment Primitives",
+            name: "Argument Flag",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
-            name: "Argument Token Primitives",
+            name: "Argument Group",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Text Primitives", package: "swift-text-primitives"),
-            ]
-        ),
-
-        .target(
-            name: "Argument Positional Primitives",
-            dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
-            name: "Argument Option Primitives",
+            name: "Argument Subcommand",
             dependencies: [
-                "Argument Primitive",
-                "Argument Environment Primitives",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
-            name: "Argument Flag Primitives",
+            name: "Argument Schema",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
+                .target(name: "Argument"),
+                .target(name: "Argument Positional"),
+                .target(name: "Argument Option"),
+                .target(name: "Argument Flag"),
+                .target(name: "Argument Group"),
+                .target(name: "Argument Subcommand"),
             ]
         ),
         .target(
-            name: "Argument Group Primitives",
+            name: "Argument Schema Test Support",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
-            ]
-        ),
-        .target(
-            name: "Argument Subcommand Primitives",
-            dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
-            ]
-        ),
-
-        .target(
-            name: "Argument Schema Primitives",
-            dependencies: [
-                "Argument Primitive",
-                "Argument Positional Primitives",
-                "Argument Option Primitives",
-                "Argument Flag Primitives",
-                "Argument Group Primitives",
-                "Argument Subcommand Primitives",
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
-            ]
-        ),
-
-        .target(
-            name: "Argument Primitives",
-            dependencies: [
-                "Argument Primitive",
-                "Argument Position Primitives",
-                "Argument Error Primitives",
-                "Argument Environment Primitives",
-                "Argument Token Primitives",
-                "Argument Positional Primitives",
-                "Argument Option Primitives",
-                "Argument Flag Primitives",
-                "Argument Group Primitives",
-                "Argument Subcommand Primitives",
-                "Argument Schema Primitives",
-            ]
-        ),
-
-        .target(
-            name: "Argument Primitives Test Support",
-            dependencies: [
-                "Argument Primitives",
-                .product(
-                    name: "Tagged Primitives Test Support",
-                    package: "swift-tagged-primitives"
-                ),
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
+                .target(name: "Argument Schema"),
             ],
-            path: "Tests/Support"
-        ),
-
-        .testTarget(
-            name: "Argument Primitives Core Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            path: "Tests/Argument Schema Test Support"
         ),
         .testTarget(
-            name: "Argument Positional Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Tests",
+            dependencies: [
+                .target(name: "Argument"),
+            ]
         ),
         .testTarget(
-            name: "Argument Option Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Positional Tests",
+            dependencies: [
+                .target(name: "Argument Positional"),
+            ]
         ),
         .testTarget(
-            name: "Argument Flag Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Option Tests",
+            dependencies: [
+                .target(name: "Argument Option"),
+            ]
         ),
         .testTarget(
-            name: "Argument Group Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Flag Tests",
+            dependencies: [
+                .target(name: "Argument Flag"),
+            ]
         ),
         .testTarget(
-            name: "Argument Subcommand Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Group Tests",
+            dependencies: [
+                .target(name: "Argument Group"),
+            ]
         ),
         .testTarget(
-            name: "Argument Schema Primitives Tests",
-            dependencies: ["Argument Primitives Test Support"]
+            name: "Argument Subcommand Tests",
+            dependencies: [
+                .target(name: "Argument Subcommand"),
+            ]
+        ),
+        .testTarget(
+            name: "Argument Schema Tests",
+            dependencies: [
+                .target(name: "Argument Schema"),
+                .target(name: "Argument Schema Test Support"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]
