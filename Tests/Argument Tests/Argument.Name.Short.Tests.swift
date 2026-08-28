@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Test_Support
+@testable import Argument
 
 extension Argument.Name.Short {
     @Suite("Argument.Name.Short")

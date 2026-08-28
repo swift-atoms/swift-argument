@@ -12,7 +12,7 @@ extension Argument {
 
         public let help: Argument.Help
 
-        public let environment: Argument.Environment.Variable.Name?
+        public let environment: String?
 
         @inlinable
         public init(
@@ -21,7 +21,7 @@ extension Argument {
             arity: Argument.Arity = .exactly(1),
             visibility: Argument.Visibility = .visible,
             help: Argument.Help = .init(),
-            environment: Argument.Environment.Variable.Name? = nil
+            environment: String? = nil
         ) {
             self.name = name
             self.placeholder = placeholder

@@ -12,29 +12,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
         .library(
-            name: "Argument Primitive",
-            targets: ["Argument Primitive"]
+            name: "Argument",
+            targets: ["Argument"]
         ),
-
-        .library(
-            name: "Argument Position",
-            targets: ["Argument Position"]
-        ),
-        .library(
-            name: "Argument Error",
-            targets: ["Argument Error"]
-        ),
-        .library(
-            name: "Argument Environment",
-            targets: ["Argument Environment"]
-        ),
-        .library(
-            name: "Argument Token",
-            targets: ["Argument Token"]
-        ),
-
         .library(
             name: "Argument Positional",
             targets: ["Argument Positional"]
@@ -59,193 +40,105 @@ let package = Package(
             name: "Argument Schema",
             targets: ["Argument Schema"]
         ),
-
         .library(
-            name: "Argument",
-            targets: ["Argument"]
-        ),
-
-        .library(
-            name: "Argument Test Support",
-            targets: ["Argument Test Support"]
-        ),
-    ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-molecules/swift-tagged.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-text.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-diagnostic.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-parser.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-finite.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-index.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-byte.git",
-            branch: "main"
+            name: "Argument Schema Test Support",
+            targets: ["Argument Schema Test Support"]
         ),
     ],
     targets: [
-
         .target(
-            name: "Argument Primitive",
-            dependencies: []
+            name: "Argument"
         ),
-
-        .target(
-            name: "Argument Position",
-            dependencies: [
-                "Argument Primitive",
-                .product(name: "Index", package: "swift-index"),
-                .product(name: "Byte", package: "swift-byte"),
-            ]
-        ),
-        .target(
-            name: "Argument Error",
-            dependencies: [
-                "Argument Primitive",
-                "Argument Position",
-                .product(name: "Diagnostic", package: "swift-diagnostic"),
-            ]
-        ),
-        .target(
-            name: "Argument Environment",
-            dependencies: [
-                "Argument Primitive",
-                .product(name: "Tagged", package: "swift-tagged"),
-            ]
-        ),
-        .target(
-            name: "Argument Token",
-            dependencies: [
-                "Argument Primitive",
-                .product(name: "Text", package: "swift-text"),
-            ]
-        ),
-
         .target(
             name: "Argument Positional",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser", package: "swift-parser"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
             name: "Argument Option",
             dependencies: [
-                "Argument Primitive",
-                "Argument Environment",
-                .product(name: "Parser", package: "swift-parser"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
             name: "Argument Flag",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser", package: "swift-parser"),
-                .product(name: "Finite", package: "swift-finite"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
             name: "Argument Group",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser", package: "swift-parser"),
+                .target(name: "Argument"),
             ]
         ),
         .target(
             name: "Argument Subcommand",
             dependencies: [
-                "Argument Primitive",
-                .product(name: "Parser", package: "swift-parser"),
+                .target(name: "Argument"),
             ]
         ),
-
         .target(
             name: "Argument Schema",
             dependencies: [
-                "Argument Primitive",
-                "Argument Positional",
-                "Argument Option",
-                "Argument Flag",
-                "Argument Group",
-                "Argument Subcommand",
-                .product(name: "Parser", package: "swift-parser"),
+                .target(name: "Argument"),
+                .target(name: "Argument Positional"),
+                .target(name: "Argument Option"),
+                .target(name: "Argument Flag"),
+                .target(name: "Argument Group"),
+                .target(name: "Argument Subcommand"),
             ]
         ),
-
         .target(
-            name: "Argument",
+            name: "Argument Schema Test Support",
             dependencies: [
-                "Argument Primitive",
-                "Argument Position",
-                "Argument Error",
-                "Argument Environment",
-                "Argument Token",
-                "Argument Positional",
-                "Argument Option",
-                "Argument Flag",
-                "Argument Group",
-                "Argument Subcommand",
-                "Argument Schema",
-            ]
-        ),
-
-        .target(
-            name: "Argument Test Support",
-            dependencies: [
-                "Argument",
-                .product(
-                    name: "Tagged Test Support",
-                    package: "swift-tagged"
-                ),
-                .product(name: "Finite", package: "swift-finite"),
+                .target(name: "Argument Schema"),
             ],
-            path: "Tests/Support"
+            path: "Tests/Argument Schema Test Support"
         ),
-
         .testTarget(
-            name: "Argument Core Tests",
-            dependencies: ["Argument Test Support"]
+            name: "Argument Tests",
+            dependencies: [
+                .target(name: "Argument"),
+            ]
         ),
         .testTarget(
             name: "Argument Positional Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Positional"),
+            ]
         ),
         .testTarget(
             name: "Argument Option Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Option"),
+            ]
         ),
         .testTarget(
             name: "Argument Flag Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Flag"),
+            ]
         ),
         .testTarget(
             name: "Argument Group Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Group"),
+            ]
         ),
         .testTarget(
             name: "Argument Subcommand Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Subcommand"),
+            ]
         ),
         .testTarget(
             name: "Argument Schema Tests",
-            dependencies: ["Argument Test Support"]
+            dependencies: [
+                .target(name: "Argument Schema"),
+                .target(name: "Argument Schema Test Support"),
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]

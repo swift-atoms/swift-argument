@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Test_Support
+@testable import Argument_Flag
 
 extension Argument.Flag {
     @Suite("Argument.Flag")

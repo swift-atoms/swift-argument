@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Test_Support
+@testable import Argument_Option
 
 extension Argument.Option<Int> {
     @Suite("Argument.Option")
@@ -41,7 +41,7 @@ extension Argument.Option<Int> {
             @Test func `environment variable carries name when supplied`() throws(Argument.Name.Long
                 .Error)
             {
-                let varName: Argument.Environment.Variable.Name = "MYAPP_COUNT"
+                let varName = "MYAPP_COUNT"
                 let option = Argument.Option<Int>(
                     name: .long(try .init("count")),
                     placeholder: "count",
