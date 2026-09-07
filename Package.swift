@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Argument", targets: ["Argument"]),
-        .library(name: "Argument Standard Library Integration", targets: ["Argument Standard Library Integration"]),
-        .library(name: "Argument Foundation Library Integration", targets: ["Argument Foundation Library Integration"]),
+
+        .library(name: "Argument Foundation Integration", targets: ["Argument Foundation Integration"]),
         .library(name: "Argument Test Support", targets: ["Argument Test Support"]),
     ],
     dependencies: [],
@@ -25,20 +25,13 @@ let package = Package(
             ],
             path: "Sources/Argument"
         ),
+        
         .target(
-            name: "Argument Standard Library Integration",
+            name: "Argument Foundation Integration",
             dependencies: [
                 .target(name: "Argument"),
             ],
-            path: "Sources/Argument Standard Library Integration"
-        ),
-        .target(
-            name: "Argument Foundation Library Integration",
-            dependencies: [
-                .target(name: "Argument"),
-                .target(name: "Argument Standard Library Integration"),
-            ],
-            path: "Sources/Argument Foundation Library Integration"
+            path: "Sources/Argument Foundation Integration"
         ),
         .target(
             name: "Argument Test Support",
@@ -52,8 +45,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Argument"),
                 .target(name: "Argument Test Support"),
-                .target(name: "Argument Standard Library Integration"),
-                .target(name: "Argument Foundation Library Integration"),
+                .target(name: "Argument Foundation Integration"),
             ],
             path: "Tests/Argument Tests"
         ),
