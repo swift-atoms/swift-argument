@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Subcommand
+@testable import Argument
 
 private struct PushResult: Sendable {}
 

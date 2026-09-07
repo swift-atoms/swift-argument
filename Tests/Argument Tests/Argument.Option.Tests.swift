@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Option
+@testable import Argument
 
 extension Argument.Option<Int> {
     @Suite("Argument.Option")

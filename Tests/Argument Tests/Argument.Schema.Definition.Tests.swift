@@ -1,7 +1,7 @@
 import Testing
 
-@testable import Argument_Schema
-import Argument_Schema_Test_Support
+@testable import Argument
+import Argument_Test_Support
 
 private struct Root: Sendable {}
 

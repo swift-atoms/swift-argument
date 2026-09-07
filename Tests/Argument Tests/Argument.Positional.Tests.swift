@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Positional
+@testable import Argument
 
 extension Argument.Positional<String> {
     @Suite("Argument.Positional")

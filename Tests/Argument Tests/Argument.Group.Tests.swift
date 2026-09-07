@@ -1,6 +1,6 @@
 import Testing
 
-@testable import Argument_Group
+@testable import Argument
 
 private struct Network: Sendable {}
 
