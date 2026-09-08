@@ -17,11 +17,14 @@ let package = Package(
         .library(name: "Argument Foundation Integration", targets: ["Argument Foundation Integration"]),
         .library(name: "Argument Test Support", targets: ["Argument Test Support"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
+    ],
     targets: [
         .target(
             name: "Argument",
             dependencies: [
+                .product(name: "Cardinal", package: "swift-cardinal"),
             ],
             path: "Sources/Argument"
         ),

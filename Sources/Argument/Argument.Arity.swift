@@ -1,14 +1,16 @@
+public import Cardinal
+
 extension Argument {
 
     public enum Arity: Sendable, Hashable, Equatable {
 
-        case exactly(Int)
+        case exactly(Cardinal)
 
-        case atMost(Int)
+        case atMost(Cardinal)
 
-        case atLeast(Int)
+        case atLeast(Cardinal)
 
-        case range(ClosedRange<Int>)
+        case range(ClosedRange<Cardinal>)
 
         case count
     }
