@@ -3,20 +3,20 @@ import Testing
 @testable import Argument
 
 extension Argument.Name.Short {
-    @Suite("Argument.Name.Short")
-    struct Test {
-        @Suite struct Unit {
-            @Test func `accepts ASCII letter`() throws(Argument.Name.Short.Error) {
+    @Suite
+    struct `Short argument names validate ASCII characters and support unchecked construction` {
+        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters` {
+            @Test func `Short names preserve an ASCII lowercase letter`() throws(Argument.Name.Short.Error) {
                 let name = try Argument.Name.Short("f")
                 #expect(name.character == "f")
             }
 
-            @Test func `accepts ASCII digit`() throws(Argument.Name.Short.Error) {
+            @Test func `Short names preserve an ASCII digit`() throws(Argument.Name.Short.Error) {
                 let name = try Argument.Name.Short("3")
                 #expect(name.character == "3")
             }
 
-            @Test func `accepts ASCII uppercase letter`() throws(Argument.Name.Short.Error) {
+            @Test func `Short names preserve an ASCII uppercase letter`() throws(Argument.Name.Short.Error) {
                 let name = try Argument.Name.Short("F")
                 #expect(name.character == "F")
             }
@@ -42,20 +42,20 @@ extension Argument.Name.Short {
             }
         }
 
-        @Suite struct `Edge Case` {
-            @Test func `rejects non-ASCII letter`() {
+        @Suite struct `Short name validation rejects non ASCII letters and punctuation` {
+            @Test func `Short name validation rejects a non ASCII letter`() {
                 #expect(throws: Argument.Name.Short.Error.notASCIIAlphanumeric(found: "ø")) {
                     _ = try Argument.Name.Short("ø")
                 }
             }
 
-            @Test func `rejects punctuation`() {
+            @Test func `Short name validation rejects punctuation`() {
                 #expect(throws: Argument.Name.Short.Error.notASCIIAlphanumeric(found: "-")) {
                     _ = try Argument.Name.Short("-")
                 }
             }
         }
 
-        @Suite struct Integration {}
+        @Suite struct `No short argument name integration cases are defined` {}
     }
 }

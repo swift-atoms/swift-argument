@@ -3,9 +3,9 @@ import Testing
 @testable import Argument
 
 extension Argument.Name {
-    @Suite("Argument.Name")
-    struct Test {
-        @Suite struct Unit {
+    @Suite
+    struct `Argument names expose their declared short and long forms` {
+        @Suite struct `Argument name variants and literal factories preserve validated forms` {
             @Test func `short-only case exposes short, not long`() throws(Argument.Name.Short.Error)
             {
                 let name = Argument.Name.short(try .init("v"))
@@ -60,8 +60,8 @@ extension Argument.Name {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument name boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument name integration cases are defined` {}
     }
 }

@@ -6,9 +6,9 @@ import Argument_Test_Support
 private struct Root: Sendable {}
 
 extension Argument.Schema.Definition<Root> {
-    @Suite("Argument.Schema.Definition")
-    struct Test {
-        @Suite struct Unit {
+    @Suite
+    struct `Argument schemas visit declared nodes in order` {
+        @Suite struct `Schema traversal preserves declaration order and handles empty or mixed nodes` {
             @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error)
             {
                 let nodes: [any Argument.Schema.Node] = [
@@ -46,8 +46,8 @@ extension Argument.Schema.Definition<Root> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument schema definition boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument schema definition integration cases are defined` {}
     }
 }

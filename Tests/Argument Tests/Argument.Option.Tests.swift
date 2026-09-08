@@ -3,9 +3,9 @@ import Testing
 @testable import Argument
 
 extension Argument.Option<Int> {
-    @Suite("Argument.Option")
-    struct Test {
-        @Suite struct Unit {
+    @Suite
+    struct `Argument options preserve supplied fields and environment variable defaults` {
+        @Suite struct `Option construction retains fields and defaults to exactly one value` {
             @Test func `initializer carries explicit fields`() {
                 let option = Argument.Option<Int>(
 
@@ -51,8 +51,8 @@ extension Argument.Option<Int> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument option boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument option integration cases are defined` {}
     }
 }

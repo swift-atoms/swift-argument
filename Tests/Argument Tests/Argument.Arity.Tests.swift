@@ -3,10 +3,10 @@ import Testing
 @testable import Argument
 
 extension Argument.Arity {
-    @Suite("Argument.Arity")
-    struct Test {
-        @Suite struct Unit {
-            @Test func `cases distinct`() {
+    @Suite
+    struct `Argument arities distinguish exact counts and range bounds` {
+        @Suite struct `Argument arity equality distinguishes cases and stored range bounds` {
+            @Test func `Exact arity differs from every other arity case`() {
                 let exact: Argument.Arity = .exactly(1)
                 let atMost: Argument.Arity = .atMost(2)
                 let atLeast: Argument.Arity = .atLeast(0)
@@ -18,7 +18,7 @@ extension Argument.Arity {
                 #expect(exact != count)
             }
 
-            @Test func `range equality`() {
+            @Test func `Arity ranges compare equal only when their bounds match`() {
                 let a: Argument.Arity = .range(1...3)
                 let b: Argument.Arity = .range(1...3)
                 let c: Argument.Arity = .range(0...3)
@@ -27,8 +27,8 @@ extension Argument.Arity {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument arity boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument arity integration cases are defined` {}
     }
 }

@@ -3,9 +3,9 @@ import Testing
 @testable import Argument
 
 extension Argument.Positional<String> {
-    @Suite("Argument.Positional")
-    struct Test {
-        @Suite struct Unit {
+    @Suite
+    struct `Positional arguments preserve fields defaults and value type independence` {
+        @Suite struct `Positional construction and equality preserve declared fields` {
             @Test func `initializer carries explicit fields`() {
                 let positional = Argument.Positional<String>(
                     name: "phrase",
@@ -31,12 +31,12 @@ extension Argument.Positional<String> {
                 #expect(positional.visibility == .visible)
             }
 
-            @Test func `generic over Int value type`() {
+            @Test func `An integer positional argument retains its supplied name`() {
                 let positional = Argument.Positional<Int>(name: "count", placeholder: "count")
                 #expect(positional.name == "count")
             }
 
-            @Test func equatable() {
+            @Test func `Positional argument equality distinguishes different names`() {
                 let a = Argument.Positional<String>(name: "x", placeholder: "x")
                 let b = Argument.Positional<String>(name: "x", placeholder: "x")
                 let c = Argument.Positional<String>(name: "y", placeholder: "x")
@@ -45,8 +45,8 @@ extension Argument.Positional<String> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No positional argument boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No positional argument integration cases are defined` {}
     }
 }
