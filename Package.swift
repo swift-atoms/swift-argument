@@ -31,7 +31,7 @@ let package = Package(
         .package(url: "https://github.com/swift-atoms/swift-index.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-tagged.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main"),
-        .package(url: "https://github.com/swift-atoms/swift-text.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-text.git", branch: "main", traits: ["Byte"]),
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
     ],
     targets: [
