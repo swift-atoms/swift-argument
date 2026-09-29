@@ -3,7 +3,7 @@ import Testing
 
 import Argument
 
-private enum Operation: Argument.Flag.Enumerable {
+private enum Operation: Argument.Flag.Enumerable, CaseIterable {
     case add
     case multiply
 }
@@ -60,7 +60,7 @@ extension Operation {
             func
                 `Enumerable flags retain their cases through the finite enumeration protocol`()
             {
-                func cases<E: Finite.Enumerable>(of type: E.Type) -> E.AllCases {
+                func cases<E: Finite.Enumerable>(of type: E.Type) -> Finite.Enumeration<E> {
                     type.allCases
                 }
 
