@@ -3,7 +3,7 @@ public import Finite
 
 extension Argument.Flag {
 
-    public protocol Enumerable: Finite.Enumerable, Hashable {
+    public protocol Enumerable: Finite.Enumerable, Hashable, Sendable {
 
         static func name(for value: Self) -> Argument.Name.Long
 
