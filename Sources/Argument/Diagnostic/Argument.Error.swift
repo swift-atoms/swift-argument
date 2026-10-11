@@ -3,7 +3,7 @@ public import Diagnostic
 
 extension Argument {
 
-    public enum Error: Swift.Error, Sendable, Hashable, Equatable {
+    public enum Error: Swift::Error, Sendable, Hashable, Equatable {
 
         case unknownOption(name: String, position: Argument.Position)
 

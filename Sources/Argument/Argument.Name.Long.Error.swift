@@ -1,6 +1,6 @@
 extension Argument.Name.Long {
 
-    public enum Error: Swift.Error, Sendable, Hashable, Equatable {
+    public enum Error: Swift::Error, Sendable, Hashable, Equatable {
 
         case empty
 

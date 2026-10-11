@@ -2,7 +2,7 @@ extension Argument.Schema {
 
     public protocol Visitor {
 
-        associatedtype Failure: Swift.Error = Never
+        associatedtype Failure: Swift::Error = Never
 
         mutating func visit<V: Sendable & Equatable>(
             positional: Argument.Positional<V>
