@@ -10,8 +10,7 @@ extension Argument.Schema.Definition<Root> {
     struct `Argument schemas visit declared nodes in order` {
         @Suite
         struct `Schema traversal preserves declaration order and handles empty or mixed nodes` {
-            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error)
-            {
+            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error) {
                 let nodes: [any Argument.Schema.Node] = [
                     Argument.Positional<String>(name: "phrase", placeholder: "phrase"),
                     Argument.Option<Int>(name: .long(try .init("count")), placeholder: "count"),

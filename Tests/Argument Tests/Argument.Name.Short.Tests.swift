@@ -5,8 +5,7 @@ import Testing
 extension Argument.Name.Short {
     @Suite
     struct `Short argument names validate ASCII characters and support unchecked construction` {
-        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters`
-        {
+        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters` {
             @Test func `Short names preserve an ASCII lowercase letter`() throws(Argument.Name.Short
                 .Error)
             {

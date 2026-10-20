@@ -28,8 +28,7 @@ extension Argument.Arity {
 
         @Suite struct `Arity bounds preserve zero and counts above the signed limit` {
             @Test(arguments: [UInt.zero, 1, UInt(Int.max), UInt(Int.max) + 1, UInt.max])
-            func `Single arity bounds preserve their unsigned counts and decimal text`(_ raw: UInt)
-            {
+            func `Single arity bounds preserve their unsigned counts and decimal text`(_ raw: UInt) {
                 let bound = Cardinal(raw)
                 let arities: [Argument.Arity] = [.exactly(bound), .atMost(bound), .atLeast(bound)]
                 for arity in arities {

@@ -6,8 +6,7 @@ extension Argument.Name {
     @Suite
     struct `Argument names expose their declared short and long forms` {
         @Suite struct `Argument name variants and literal factories preserve validated forms` {
-            @Test func `short-only case exposes short, not long`() throws(Argument.Name.Short.Error)
-            {
+            @Test func `short-only case exposes short, not long`() throws(Argument.Name.Short.Error) {
                 let name = Argument.Name.short(try .init("v"))
                 #expect(name.short?.character == "v")
                 #expect(name.long == nil)
