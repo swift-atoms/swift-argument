@@ -1,20 +1,20 @@
 #if Text
 
-extension Argument.Token {
+    extension Argument.Token {
 
-    public enum Kind: Sendable, Hashable, Equatable {
+        public enum Kind: Sendable, Hashable, Equatable {
 
-        case long(String)
+            case long(String)
 
-        case shortCluster(String)
+            case shortCluster(String)
 
-        case value(String)
+            case value(String)
 
-        case separator
+            case separator
 
-        case positional(String)
+            case positional(String)
 
-        case endOfOptions
+            case endOfOptions
+        }
     }
-}
 #endif

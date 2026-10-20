@@ -1,14 +1,15 @@
+import Argument_Test_Support
 import Testing
 
 @testable import Argument
-import Argument_Test_Support
 
 private struct Root: Sendable {}
 
 extension Argument.Schema.Definition<Root> {
     @Suite
     struct `Argument schemas visit declared nodes in order` {
-        @Suite struct `Schema traversal preserves declaration order and handles empty or mixed nodes` {
+        @Suite
+        struct `Schema traversal preserves declaration order and handles empty or mixed nodes` {
             @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error)
             {
                 let nodes: [any Argument.Schema.Node] = [

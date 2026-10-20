@@ -46,7 +46,8 @@ extension Argument.Subcommand<PushResult> {
 extension Argument.Subcommand<Result>.Choice {
     @Suite
     struct `Subcommand choices preserve declaration order` {
-        @Suite struct `Subcommand choice construction retains declarations in their supplied order` {
+        @Suite struct `Subcommand choice construction retains declarations in their supplied order`
+        {
             @Test func `Subcommand choices retain declarations in their supplied order`() {
                 let choice = Argument.Subcommand<Result>.Choice(declarations: [
                     .init(name: "push"),

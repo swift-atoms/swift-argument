@@ -5,8 +5,11 @@ import Testing
 extension Argument.Name.Short {
     @Suite
     struct `Short argument names validate ASCII characters and support unchecked construction` {
-        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters` {
-            @Test func `Short names preserve an ASCII lowercase letter`() throws(Argument.Name.Short.Error) {
+        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters`
+        {
+            @Test func `Short names preserve an ASCII lowercase letter`() throws(Argument.Name.Short
+                .Error)
+            {
                 let name = try Argument.Name.Short("f")
                 #expect(name.character == "f")
             }
@@ -16,7 +19,9 @@ extension Argument.Name.Short {
                 #expect(name.character == "3")
             }
 
-            @Test func `Short names preserve an ASCII uppercase letter`() throws(Argument.Name.Short.Error) {
+            @Test func `Short names preserve an ASCII uppercase letter`() throws(Argument.Name.Short
+                .Error)
+            {
                 let name = try Argument.Name.Short("F")
                 #expect(name.character == "F")
             }

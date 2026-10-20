@@ -6,7 +6,9 @@ extension Argument.Name.Long {
     @Suite
     struct `Long argument names preserve valid text and reject invalid characters` {
         @Suite struct `Long names accept letters hyphens and trailing digits` {
-            @Test func `Long names preserve a simple letter sequence`() throws(Argument.Name.Long.Error) {
+            @Test func `Long names preserve a simple letter sequence`() throws(Argument.Name.Long
+                .Error)
+            {
                 let name = try Argument.Name.Long("verbose")
                 #expect(name.string == "verbose")
             }
@@ -16,7 +18,9 @@ extension Argument.Name.Long {
                 #expect(name.string == "dry-run")
             }
 
-            @Test func `Long names preserve a letter followed by digits`() throws(Argument.Name.Long.Error) {
+            @Test func `Long names preserve a letter followed by digits`() throws(Argument.Name.Long
+                .Error)
+            {
                 let name = try Argument.Name.Long("v2")
                 #expect(name.string == "v2")
             }
@@ -37,7 +41,8 @@ extension Argument.Name.Long {
             }
         }
 
-        @Suite struct `Long names reject empty text leading digits underscores and non ASCII characters` {
+        @Suite
+        struct `Long names reject empty text leading digits underscores and non ASCII characters` {
             @Test func `Long name validation rejects an empty string`() {
                 #expect(throws: Argument.Name.Long.Error.empty) {
                     _ = try Argument.Name.Long("")

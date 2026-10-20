@@ -1,19 +1,19 @@
 #if Text
-public import Text
+    public import Text
 
-extension Argument {
+    extension Argument {
 
-    public struct Token: Sendable, Hashable, Equatable {
+        public struct Token: Sendable, Hashable, Equatable {
 
-        public let kind: Argument.Token.Kind
+            public let kind: Argument.Token.Kind
 
-        public let range: Text.Range
+            public let range: Text.Range
 
-        @inlinable
-        public init(kind: Argument.Token.Kind, range: Text.Range) {
-            self.kind = kind
-            self.range = range
+            @inlinable
+            public init(kind: Argument.Token.Kind, range: Text.Range) {
+                self.kind = kind
+                self.range = range
+            }
         }
     }
-}
 #endif
