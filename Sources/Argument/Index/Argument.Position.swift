@@ -7,14 +7,14 @@
 
         public struct Position: Sendable, Hashable, Equatable {
 
-            public let index: Index<String>
+            public let argvIndex: Index<String>
 
-            public let offset: Index<Byte>.Offset
+            public let byteOffset: Index<Byte>.Offset
 
             @inlinable
             public init(argvIndex: Index<String>, byteOffset: Index<Byte>.Offset) {
-                self.index = argvIndex
-                self.offset = byteOffset
+                self.argvIndex = argvIndex
+                self.byteOffset = byteOffset
             }
         }
     }

@@ -14,7 +14,7 @@ extension Argument.Name {
 extension Argument.Name.Long {
 
     @inlinable
-    public init(_ string: String) throws(Argument.Name.Long.Error) {
+    public init(_ string: String) throws(Error) {
         guard let first = string.first else {
             throw .empty
         }
@@ -38,7 +38,7 @@ extension Argument.Name.Long {
     @inlinable
     public static func literal(_ name: StaticString) -> Argument.Name.Long {
         let string = "\(name)"
-        do throws(Argument.Name.Long.Error) {
+        do throws(Error) {
             return try Argument.Name.Long(string)
         } catch {
             preconditionFailure(

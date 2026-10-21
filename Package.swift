@@ -46,6 +46,45 @@ let package = Package(
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
     ],
     targets: [
+        .testTarget(
+            name: "Absorbed swift-argument-diagnostic Tests",
+            dependencies: [
+                .target(name: "Argument"),
+                .product(
+                    name: "Diagnostic",
+                    package: "swift-diagnostic",
+                    condition: .when(traits: ["Diagnostic"])
+                ),
+            ],
+            path: "Tests/Absorbed swift-argument-diagnostic"
+        ),
+        .testTarget(
+            name: "Absorbed swift-argument-index Tests",
+            dependencies: [
+                .target(name: "Argument"),
+                .product(
+                    name: "Index",
+                    package: "swift-index",
+                    condition: .when(traits: ["Index", "Diagnostic"])
+                ),
+                .product(
+                    name: "Byte",
+                    package: "swift-byte",
+                    condition: .when(traits: ["Index", "Diagnostic"])
+                ),
+                .product(
+                    name: "Ordinal",
+                    package: "swift-ordinal",
+                    condition: .when(traits: ["Index", "Diagnostic"])
+                ),
+                .product(
+                    name: "Tagged",
+                    package: "swift-tagged",
+                    condition: .when(traits: ["Index", "Diagnostic"])
+                ),
+            ],
+            path: "Tests/Absorbed swift-argument-index"
+        ),
         .target(
             name: "Argument",
             dependencies: [
@@ -104,31 +143,6 @@ let package = Package(
             dependencies: [
                 .target(name: "Argument"),
                 .target(name: "Argument Test Support"),
-                .product(
-                    name: "Diagnostic",
-                    package: "swift-diagnostic",
-                    condition: .when(traits: ["Diagnostic"])
-                ),
-                .product(
-                    name: "Index",
-                    package: "swift-index",
-                    condition: .when(traits: ["Index", "Diagnostic"])
-                ),
-                .product(
-                    name: "Byte",
-                    package: "swift-byte",
-                    condition: .when(traits: ["Index", "Diagnostic"])
-                ),
-                .product(
-                    name: "Ordinal",
-                    package: "swift-ordinal",
-                    condition: .when(traits: ["Index", "Diagnostic"])
-                ),
-                .product(
-                    name: "Tagged",
-                    package: "swift-tagged",
-                    condition: .when(traits: ["Index", "Diagnostic"])
-                ),
             ],
             path: "Tests/Argument Tests"
         ),

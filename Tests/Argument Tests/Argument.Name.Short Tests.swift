@@ -4,8 +4,8 @@ import Testing
 
 extension Argument.Name.Short {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Short argument names validate ASCII characters and support unchecked construction` {
+        @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters` {
             @Test func `Short names preserve an ASCII lowercase letter`() throws(Argument.Name.Short
                 .Error)
             {
@@ -46,7 +46,7 @@ extension Argument.Name.Short {
             }
         }
 
-        @Suite struct `Edge Case` {
+        @Suite struct `Short name validation rejects non ASCII letters and punctuation` {
             @Test func `Short name validation rejects a non ASCII letter`() {
                 #expect(throws: Argument.Name.Short.Error.notASCIIAlphanumeric(found: "ø")) {
                     _ = try Argument.Name.Short("ø")
@@ -60,6 +60,6 @@ extension Argument.Name.Short {
             }
         }
 
-        @Suite struct Integration {}
+        @Suite struct `No short argument name integration cases are defined` {}
     }
 }

@@ -7,11 +7,10 @@ private struct Root: Sendable {}
 
 extension Argument.Schema.Definition<Root> {
     @Suite
-    struct Test {
+    struct `Argument schemas visit declared nodes in order` {
         @Suite
-        struct Unit {
-            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error)
-            {
+        struct `Schema traversal preserves declaration order and handles empty or mixed nodes` {
+            @Test func `accept walks nodes in declaration order`() throws(Argument.Name.Long.Error) {
                 let nodes: [any Argument.Schema.Node] = [
                     Argument.Positional<String>(name: "phrase", placeholder: "phrase"),
                     Argument.Option<Int>(name: .long(try .init("count")), placeholder: "count"),
@@ -47,8 +46,8 @@ extension Argument.Schema.Definition<Root> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument schema definition boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument schema definition integration cases are defined` {}
     }
 }

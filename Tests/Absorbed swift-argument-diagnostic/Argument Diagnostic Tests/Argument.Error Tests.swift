@@ -2,10 +2,11 @@
     import Diagnostic
     import Testing
 
+    import Argument
     @testable import Argument
 
     extension Argument.Error {
-        @Suite
+        @Suite("Argument.Error")
         struct Test {
             @Suite struct Unit {
                 @Test func `position accessor returns the case's position payload`() {

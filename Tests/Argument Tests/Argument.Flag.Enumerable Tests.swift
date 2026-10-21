@@ -26,8 +26,8 @@
 
     extension Operation {
         @Suite
-        struct Test {
-            @Suite struct Unit {
+        struct `Enumerable flags provide names and help for each case` {
+            @Suite struct `Enumerable flags preserve case identity and metadata` {
                 @Test func `Enumerable flags enumerate every case`() {
                     let all = Operation.allCases
                     #expect(all == [.add, .multiply])
@@ -53,9 +53,9 @@
                 }
             }
 
-            @Suite struct `Edge Case` {}
+            @Suite struct `No enumerable flag boundary cases are defined` {}
 
-            @Suite struct Integration {
+            @Suite struct `Enumerable flags satisfy the finite enumeration protocol` {
                 @Test
                 func
                     `Enumerable flags retain their cases through the finite enumeration protocol`()

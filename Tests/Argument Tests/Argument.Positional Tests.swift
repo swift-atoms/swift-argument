@@ -4,8 +4,8 @@ import Testing
 
 extension Argument.Positional<String> {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Positional arguments preserve fields defaults and value type independence` {
+        @Suite struct `Positional construction and equality preserve declared fields` {
             @Test func `initializer carries explicit fields`() {
                 let positional = Argument.Positional<String>(
                     name: "phrase",
@@ -45,8 +45,8 @@ extension Argument.Positional<String> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No positional argument boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No positional argument integration cases are defined` {}
     }
 }

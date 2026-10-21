@@ -14,7 +14,7 @@ extension Argument.Name {
 extension Argument.Name.Short {
 
     @inlinable
-    public init(_ character: Character) throws(Argument.Name.Short.Error) {
+    public init(_ character: Character) throws(Error) {
         guard character.isASCII, character.isLetter || character.isNumber else {
             throw .notASCIIAlphanumeric(found: character)
         }
@@ -26,7 +26,7 @@ extension Argument.Name.Short {
 
     @inlinable
     public static func literal(_ name: Character) -> Argument.Name.Short {
-        do throws(Argument.Name.Short.Error) {
+        do throws(Error) {
             return try Argument.Name.Short(name)
         } catch {
             preconditionFailure(

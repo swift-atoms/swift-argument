@@ -3,8 +3,8 @@ import Testing
 
 extension Argument.Arity {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Argument arities distinguish exact counts and range bounds` {
+        @Suite struct `Argument arity equality distinguishes cases and stored range bounds` {
             @Test func `Exact arity differs from every other arity case`() {
                 let exact: Argument.Arity = .exactly(1)
                 let atMost: Argument.Arity = .atMost(2)
@@ -26,18 +26,16 @@ extension Argument.Arity {
             }
         }
 
-        @Suite struct `Edge Case` {
+        @Suite struct `Arity bounds preserve zero and counts above the signed limit` {
             @Test(arguments: [UInt.zero, 1, UInt(Int.max), UInt(Int.max) + 1, UInt.max])
-            func `Single arity bounds preserve their unsigned counts and decimal text`(_ raw: UInt)
-            {
+            func `Single arity bounds preserve their unsigned counts and decimal text`(_ raw: UInt) {
                 let bound = Cardinal(raw)
                 let arities: [Argument.Arity] = [.exactly(bound), .atMost(bound), .atLeast(bound)]
                 for arity in arities {
                     switch arity {
                     case .exactly(let stored), .atMost(let stored), .atLeast(let stored):
-                        #expect(stored == bound)
+                        #expect(stored.rawValue == raw)
                         #expect("\(stored)" == "\(raw)")
-
                     case .range, .count:
                         Issue.record("Expected an arity with a single count bound")
                     }
@@ -64,6 +62,6 @@ extension Argument.Arity {
             }
         }
 
-        @Suite struct Integration {}
+        @Suite struct `No argument arity integration cases are defined` {}
     }
 }

@@ -4,11 +4,12 @@ import Testing
 
 extension Argument.Option<Int> {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Argument options preserve supplied fields and environment variable defaults` {
+        @Suite struct `Option construction retains fields and defaults to exactly one value` {
             @Test func `initializer carries explicit fields`() {
                 let option = Argument.Option<Int>(
-                    name: .both(short: .literal("c"), long: .literal("count")),
+
+                    name: .both(short: try! .init("c"), long: try! .init("count")),
                     placeholder: "count",
                     arity: .exactly(1),
                     visibility: .visible,
@@ -50,8 +51,8 @@ extension Argument.Option<Int> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument option boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument option integration cases are defined` {}
     }
 }

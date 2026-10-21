@@ -11,8 +11,8 @@ private enum Result: Sendable {
 
 extension Argument.Subcommand<PushResult> {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Argument subcommands preserve supplied fields and default aliases` {
+        @Suite struct `Subcommand construction retains explicit fields and defaults to visible` {
             @Test func `initializer carries explicit fields`() {
                 let subcommand = Argument.Subcommand<PushResult>(
                     name: "push",
@@ -37,16 +37,16 @@ extension Argument.Subcommand<PushResult> {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument subcommand boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument subcommand integration cases are defined` {}
     }
 }
 
 extension Argument.Subcommand<Result>.Choice {
     @Suite
-    struct Test {
-        @Suite struct Unit {
+    struct `Subcommand choices preserve declaration order` {
+        @Suite struct `Subcommand choice construction retains declarations in their supplied order` {
             @Test func `Subcommand choices retain declarations in their supplied order`() {
                 let choice = Argument.Subcommand<Result>.Choice(declarations: [
                     .init(name: "push"),
@@ -58,8 +58,8 @@ extension Argument.Subcommand<Result>.Choice {
             }
         }
 
-        @Suite struct `Edge Case` {}
+        @Suite struct `No argument subcommand choice boundary cases are defined` {}
 
-        @Suite struct Integration {}
+        @Suite struct `No argument subcommand choice integration cases are defined` {}
     }
 }
