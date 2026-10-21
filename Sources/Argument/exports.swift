@@ -1,13 +1,13 @@
-@_exported public import Cardinal
+public import Cardinal
 
 #if Tagged
-    @_exported public import Tagged
+    public import Tagged
 #endif
 
 #if Finite
-    @_exported public import Finite
+    public import Finite
 #endif
 
 #if Text
-    @_exported public import Text
+    public import Text
 #endif

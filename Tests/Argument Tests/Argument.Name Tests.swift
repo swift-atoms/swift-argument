@@ -4,9 +4,10 @@ import Testing
 
 extension Argument.Name {
     @Suite
-    struct `Argument names expose their declared short and long forms` {
-        @Suite struct `Argument name variants and literal factories preserve validated forms` {
-            @Test func `short-only case exposes short, not long`() throws(Argument.Name.Short.Error) {
+    struct Test {
+        @Suite struct Unit {
+            @Test func `short-only case exposes short, not long`() throws(Argument.Name.Short.Error)
+            {
                 let name = Argument.Name.short(try .init("v"))
                 #expect(name.short?.character == "v")
                 #expect(name.long == nil)
@@ -20,10 +21,8 @@ extension Argument.Name {
 
             @Test func `both case exposes short and long`() {
                 let name = Argument.Name.both(
-
-                    short: try! .init("v"),
-
-                    long: try! .init("verbose")
+                    short: .literal("v"),
+                    long: .literal("verbose")
                 )
                 #expect(name.short?.character == "v")
                 #expect(name.long?.string == "verbose")
@@ -59,8 +58,8 @@ extension Argument.Name {
             }
         }
 
-        @Suite struct `No argument name boundary cases are defined` {}
+        @Suite struct `Edge Case` {}
 
-        @Suite struct `No argument name integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }

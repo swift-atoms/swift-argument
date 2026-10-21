@@ -1,7 +1,6 @@
 #if Index
     import Testing
 
-    import Argument
     import Byte
     import Index
     import Ordinal
@@ -9,13 +8,13 @@
     @testable import Argument
 
     extension Argument.Position {
-        @Suite("Argument.Position")
+        @Suite
         struct Test {
             @Suite struct Unit {
                 @Test func `initializer carries argvIndex and byteOffset`() {
                     let position = Argument.Position(argvIndex: 2, byteOffset: 5)
-                    #expect(position.argvIndex == 2)
-                    #expect(position.byteOffset == 5)
+                    #expect(position.index == 2)
+                    #expect(position.offset == 5)
                 }
 
                 @Test func `equality compares fields`() {

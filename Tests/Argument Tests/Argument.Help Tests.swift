@@ -4,8 +4,8 @@ import Testing
 
 extension Argument.Help {
     @Suite
-    struct `Argument help preserves supplied values and empty defaults` {
-        @Suite struct `Help construction retains named values and defaults to empty fields` {
+    struct Test {
+        @Suite struct Unit {
             @Test func `default initializer produces empty fields`() {
                 let help = Argument.Help()
                 #expect(help.abstract.isEmpty)
@@ -28,8 +28,8 @@ extension Argument.Help {
             }
         }
 
-        @Suite struct `No argument help boundary cases are defined` {}
+        @Suite struct `Edge Case` {}
 
-        @Suite struct `No argument help integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }

@@ -4,8 +4,8 @@ import Testing
 
 extension Argument.Name.Long {
     @Suite
-    struct `Long argument names preserve valid text and reject invalid characters` {
-        @Suite struct `Long names accept letters hyphens and trailing digits` {
+    struct Test {
+        @Suite struct Unit {
             @Test func `Long names preserve a simple letter sequence`() throws(Argument.Name.Long
                 .Error)
             {
@@ -42,7 +42,7 @@ extension Argument.Name.Long {
         }
 
         @Suite
-        struct `Long names reject empty text leading digits underscores and non ASCII characters` {
+        struct `Edge Case` {
             @Test func `Long name validation rejects an empty string`() {
                 #expect(throws: Argument.Name.Long.Error.empty) {
                     _ = try Argument.Name.Long("")
@@ -68,6 +68,6 @@ extension Argument.Name.Long {
             }
         }
 
-        @Suite struct `No long argument name integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }

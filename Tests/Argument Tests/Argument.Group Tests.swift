@@ -6,8 +6,8 @@ private struct Network: Sendable {}
 
 extension Argument.Group<Network> {
     @Suite
-    struct `Argument groups preserve explicit fields and default visibility` {
-        @Suite struct `Group construction retains supplied fields and defaults to visible` {
+    struct Test {
+        @Suite struct Unit {
             @Test func `initializer carries explicit fields`() {
                 let group = Argument.Group<Network>(
                     name: "network",
@@ -25,8 +25,8 @@ extension Argument.Group<Network> {
             }
         }
 
-        @Suite struct `No argument group boundary cases are defined` {}
+        @Suite struct `Edge Case` {}
 
-        @Suite struct `No argument group integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }

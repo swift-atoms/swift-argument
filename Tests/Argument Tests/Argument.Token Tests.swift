@@ -5,8 +5,8 @@
 
     extension Argument.Token {
         @Suite
-        struct `Argument tokens preserve their kind and source range` {
-            @Suite struct `Argument token metadata retains its stored values` {
+        struct Test {
+            @Suite struct Unit {
                 @Test func `Argument tokens preserve the supplied kind and source range`() {
                     let start: Text.Position = 0
                     let end: Text.Position = 6
@@ -29,9 +29,9 @@
                 }
             }
 
-            @Suite struct `No argument token boundary cases are defined` {}
+            @Suite struct `Edge Case` {}
 
-            @Suite struct `No argument token integration cases are defined` {}
+            @Suite struct Integration {}
         }
     }
 #endif

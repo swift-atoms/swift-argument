@@ -4,15 +4,15 @@ import Testing
 
 extension Argument.Visibility {
     @Suite
-    struct `Argument visibility cases remain distinct` {
-        @Suite struct `Visible and hidden argument visibility cases differ` {
+    struct Test {
+        @Suite struct Unit {
             @Test func `Visible and hidden visibility cases differ`() {
                 #expect(Argument.Visibility.visible != Argument.Visibility.hidden)
             }
         }
 
-        @Suite struct `No argument visibility boundary cases are defined` {}
+        @Suite struct `Edge Case` {}
 
-        @Suite struct `No argument visibility integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }

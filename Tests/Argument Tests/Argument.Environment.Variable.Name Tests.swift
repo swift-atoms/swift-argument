@@ -4,8 +4,8 @@
 
     extension Argument.Environment.Variable.Name {
         @Suite
-        struct `Environment variable names preserve their tagged strings` {
-            @Suite struct `Environment variable names support strings and equality` {
+        struct Test {
+            @Suite struct Unit {
                 @Test func `Environment variable names preserve their underlying strings`() {
                     let name = Argument.Environment.Variable.Name(_unchecked: "MYAPP_VERBOSITY")
                     #expect(name.underlying == "MYAPP_VERBOSITY")
@@ -23,9 +23,9 @@
                 }
             }
 
-            @Suite struct `No environment variable name boundary cases are defined` {}
+            @Suite struct `Edge Case` {}
 
-            @Suite struct `No environment variable name integration cases are defined` {}
+            @Suite struct Integration {}
         }
     }
 #endif

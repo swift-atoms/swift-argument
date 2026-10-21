@@ -4,8 +4,8 @@ import Testing
 
 extension Argument.Flag {
     @Suite
-    struct `Argument flags preserve explicit fields and default arity` {
-        @Suite struct `Flag construction retains supplied fields and supports count arity` {
+    struct Test {
+        @Suite struct Unit {
             @Test func `initializer carries explicit fields`() throws(Argument.Name.Long.Error) {
                 let flag = Argument.Flag(
                     name: .long(try .init("verbose")),
@@ -34,8 +34,8 @@ extension Argument.Flag {
             }
         }
 
-        @Suite struct `No argument flag boundary cases are defined` {}
+        @Suite struct `Edge Case` {}
 
-        @Suite struct `No argument flag integration cases are defined` {}
+        @Suite struct Integration {}
     }
 }
