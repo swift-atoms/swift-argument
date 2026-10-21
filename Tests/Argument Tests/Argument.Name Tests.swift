@@ -21,9 +21,9 @@ extension Argument.Name {
             @Test func `both case exposes short and long`() {
                 let name = Argument.Name.both(
 
-                    short: try! .init("v"),
+                    short: .literal("v"),
 
-                    long: try! .init("verbose")
+                    long: .literal("verbose")
                 )
                 #expect(name.short?.character == "v")
                 #expect(name.long?.string == "verbose")

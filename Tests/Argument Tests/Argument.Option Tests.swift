@@ -9,7 +9,7 @@ extension Argument.Option<Int> {
             @Test func `initializer carries explicit fields`() {
                 let option = Argument.Option<Int>(
 
-                    name: .both(short: try! .init("c"), long: try! .init("count")),
+                    name: .both(short: .literal("c"), long: .literal("count")),
                     placeholder: "count",
                     arity: .exactly(1),
                     visibility: .visible,
