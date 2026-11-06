@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Name {
+enum `Argument.Name Tests` {}
+
+extension `Argument.Name Tests` {
     @Suite
     struct `Argument names expose their declared short and long forms` {
         @Suite struct `Argument name variants and literal factories preserve validated forms` {

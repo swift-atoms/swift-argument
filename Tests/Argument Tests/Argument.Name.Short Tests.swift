@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Name.Short {
+enum `Argument.Name.Short Tests` {}
+
+extension `Argument.Name.Short Tests` {
     @Suite
     struct `Short argument names validate ASCII characters and support unchecked construction` {
         @Suite struct `Short names accept ASCII letters and digits and permit unchecked characters` {

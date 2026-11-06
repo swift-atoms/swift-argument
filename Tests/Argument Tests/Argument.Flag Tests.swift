@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Flag {
+enum `Argument.Flag Tests` {}
+
+extension `Argument.Flag Tests` {
     @Suite
     struct `Argument flags preserve explicit fields and default arity` {
         @Suite struct `Flag construction retains supplied fields and supports count arity` {

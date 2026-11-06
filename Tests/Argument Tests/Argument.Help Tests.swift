@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Help {
+enum `Argument.Help Tests` {}
+
+extension `Argument.Help Tests` {
     @Suite
     struct `Argument help preserves supplied values and empty defaults` {
         @Suite struct `Help construction retains named values and defaults to empty fields` {

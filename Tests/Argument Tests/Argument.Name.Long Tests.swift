@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Name.Long {
+enum `Argument.Name.Long Tests` {}
+
+extension `Argument.Name.Long Tests` {
     @Suite
     struct `Long argument names preserve valid text and reject invalid characters` {
         @Suite struct `Long names accept letters hyphens and trailing digits` {

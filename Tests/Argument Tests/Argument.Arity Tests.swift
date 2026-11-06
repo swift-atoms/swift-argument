@@ -1,7 +1,9 @@
 import Argument
 import Testing
 
-extension Argument.Arity {
+enum `Argument.Arity Tests` {}
+
+extension `Argument.Arity Tests` {
     @Suite
     struct `Argument arities distinguish exact counts and range bounds` {
         @Suite struct `Argument arity equality distinguishes cases and stored range bounds` {

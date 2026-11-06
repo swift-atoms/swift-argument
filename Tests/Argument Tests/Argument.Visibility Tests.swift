@@ -2,7 +2,9 @@ import Testing
 
 @testable import Argument
 
-extension Argument.Visibility {
+enum `Argument.Visibility Tests` {}
+
+extension `Argument.Visibility Tests` {
     @Suite
     struct `Argument visibility cases remain distinct` {
         @Suite struct `Visible and hidden argument visibility cases differ` {
