@@ -7,17 +7,14 @@ enum `Argument.Visibility Tests` {}
 extension `Argument.Visibility Tests` {
     @Suite
     struct `Argument visibility cases remain distinct` {
-    }
-}
-
-extension `Argument.Visibility Tests`.`Argument visibility cases remain distinct` {
-    @Suite struct `Visible and hidden argument visibility cases differ` {
-        @Test func `Visible and hidden visibility cases differ`() {
-            #expect(Argument.Visibility.visible != Argument.Visibility.hidden)
+        @Suite struct `Visible and hidden argument visibility cases differ` {
+            @Test func `Visible and hidden visibility cases differ`() {
+                #expect(Argument.Visibility.visible != Argument.Visibility.hidden)
+            }
         }
+
+        @Suite struct `No argument visibility boundary cases are defined` {}
+
+        @Suite struct `No argument visibility integration cases are defined` {}
     }
-
-    @Suite struct `No argument visibility boundary cases are defined` {}
-
-    @Suite struct `No argument visibility integration cases are defined` {}
 }
