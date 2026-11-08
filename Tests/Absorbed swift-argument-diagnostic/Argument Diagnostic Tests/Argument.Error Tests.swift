@@ -6,7 +6,7 @@
     @testable import Argument
 
     extension Argument.Error {
-        @Suite("Argument.Error")
+        @Suite
         struct Test {
             @Suite struct Unit {
                 @Test func `position accessor returns the case's position payload`() {

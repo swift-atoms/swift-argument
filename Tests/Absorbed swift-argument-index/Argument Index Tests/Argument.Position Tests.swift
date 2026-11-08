@@ -9,7 +9,7 @@
     @testable import Argument
 
     extension Argument.Position {
-        @Suite("Argument.Position")
+        @Suite
         struct Test {
             @Suite struct Unit {
                 @Test func `initializer carries argvIndex and byteOffset`() {
