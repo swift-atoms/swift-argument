@@ -2,9 +2,9 @@
     import Argument
     import Testing
 
-enum `Argument.Option.Arity Tests` {}
+    enum `Argument.Option.Arity Tests` {}
 
-extension `Argument.Option.Arity Tests` {
+    extension `Argument.Option.Arity Tests` {
         @Suite
         struct `Typed environment options preserve arity metadata` {
             @Test(arguments: [
@@ -72,5 +72,5 @@ extension `Argument.Option.Arity Tests` {
                 #expect(option.environment == "APP_COUNT")
             }
         }
-}
+    }
 #endif
