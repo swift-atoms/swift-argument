@@ -7,10 +7,10 @@
         @Suite
         struct `Argument tokens preserve their kind and source range` {
             @Suite struct `Argument token metadata retains its stored values` {
-                @Test func `Argument tokens preserve the supplied kind and source range`() {
+                @Test func `Argument tokens preserve the supplied kind and source range`() throws {
                     let start: Text.Position = 0
                     let end: Text.Position = 6
-                    let range = Text.Range(start: start, end: end)
+                    let range = try Text.Range(start: start, end: end)
                     let token = Argument.Token(kind: .long("verbose"), range: range)
                     #expect(token.kind == .long("verbose"))
                     #expect(token.range == range)
